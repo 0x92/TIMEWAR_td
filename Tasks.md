@@ -55,7 +55,7 @@ Output: PR mit README (Setup/Run), Badges, funktionierendem `pnpm dev`.
 ## 2) Engine & ECS
 
 - [x] T-010: Minimal-ECS (Entities, Components SoA, Systems-Loop, Pools)
-- [ ] T-011: Deterministischer Fixed-Step (60 Hz) + RNG (Xorshift128+)
+- [x] T-011: Deterministischer Fixed-Step (60 Hz) + RNG (Xorshift128+)
 - [ ] T-012: Snapshot-Rewind (Ring-Buffer, 6–8 s, 100 ms, Replay)
 
 **Prompt für Codex:**
