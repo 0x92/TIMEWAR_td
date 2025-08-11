@@ -174,8 +174,8 @@ AudioManager mit Queues, Rate-Limits, Master/Music/SFX Gains. Keine Clipping-Art
 
 ## 10) Meta-Progression
 
-- [ ] T-090: Tech-Tree v1 (Anomalie-Kerne, 8 Upgrades, Save/Load)
-- [ ] T-091: Fraktion „Chronisten“ (billiger Rewind, weniger Gold)
+ - [x] T-090: Tech-Tree v1 (Anomalie-Kerne, 8 Upgrades, Save/Load)
+ - [x] T-091: Fraktion „Chronisten“ (billiger Rewind, weniger Gold)
 
 **Prompt für Codex:**
 

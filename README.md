@@ -110,13 +110,14 @@ pnpm e2e
   /audio          # Audio manager, SFX
   /scenes         # Boot, MainMenu, Map
   /maps           # Tiled JSON + overlays/relic nodes
+  /meta           # Meta progression (factions, tech tree)
   /utils          # Helpers, types, logging
 /tests            # Vitest suites
 /e2e              # Playwright tests
 /docs             # Screenshots, specs
 ```
 
-**Aliases (`tsconfig.json`)**: `@ecs`, `@engine`, `@path`, `@combat`, `@content`, `@ui`, `@audio`, `@scenes`, `@maps`, `@utils`
+**Aliases (`tsconfig.json`)**: `@ecs`, `@engine`, `@path`, `@combat`, `@content`, `@ui`, `@audio`, `@scenes`, `@maps`, `@utils`, `@meta`
 
 ---
 
