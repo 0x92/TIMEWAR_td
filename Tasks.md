@@ -101,8 +101,8 @@ Vitest deckt Kombinatorik ab.
 
 ## 5) Ressourcen, Wellen & Spawner
 
-- [ ] T-040: Ressourcen: Gold, Chrono-Energie, Stabilität + HUD
-- [ ] T-041: Wellenparser (waves.json) + Spawner mit Subwellen/Mutatoren
+ - [x] T-040: Ressourcen: Gold, Chrono-Energie, Stabilität + HUD
+ - [x] T-041: Wellenparser (waves.json) + Spawner mit Subwellen/Mutatoren
 
 **Prompt für Codex:**
 

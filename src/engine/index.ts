@@ -1,3 +1,5 @@
 export * from './loop'
 export * from './rng'
 export * from './snapshots'
+export * from './resources'
+export * from './spawner'
