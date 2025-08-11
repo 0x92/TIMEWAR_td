@@ -1,0 +1,14 @@
+{
+  "waves": [
+    {
+      "subwaves": [
+        { "delay": 0, "enemy": "Raptor", "count": 3, "interval": 0.5 }
+      ]
+    },
+    {
+      "subwaves": [
+        { "delay": 2, "enemy": "Raptor", "count": 2, "interval": 1, "mutators": ["fast", "strong"] }
+      ]
+    }
+  ]
+}

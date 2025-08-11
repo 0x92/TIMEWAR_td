@@ -3,6 +3,9 @@ import typescriptLogo from './typescript.svg'
 import viteLogo from '/vite.svg'
 import { setupCounter } from './counter.ts'
 import { add } from '@utils/math'
+import { ResourceManager, createSpawnPlan } from '@engine/index'
+import { HUD } from '@ui/index'
+import waves from '@content/waves.sample.json'
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <div>
@@ -24,3 +27,10 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
 
 console.log('add demo', add(1, 2))
 setupCounter(document.querySelector<HTMLButtonElement>('#counter')!)
+
+const resources = new ResourceManager({ gold: 100, chrono: 50, stability: 100 })
+new HUD(resources)
+resources.add('gold', 25)
+
+const plan = createSpawnPlan(waves, 42)
+console.log('spawn plan', plan)
