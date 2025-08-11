@@ -12,10 +12,15 @@ interface Velocity {
 }
 
 class MovementSystem implements System {
+  private positions: ComponentStore<Position>
+  private velocities: ComponentStore<Velocity>
   constructor(
-    private positions: ComponentStore<Position>,
-    private velocities: ComponentStore<Velocity>
-  ) {}
+    positions: ComponentStore<Position>,
+    velocities: ComponentStore<Velocity>
+  ) {
+    this.positions = positions
+    this.velocities = velocities
+  }
 
   update(world: World, dt: number): void {
     for (const entity of world.query(this.positions, this.velocities)) {

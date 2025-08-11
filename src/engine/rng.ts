@@ -17,6 +17,15 @@ export class Xorshift128Plus {
     return z ^ (z >> 31n)
   }
 
+  getState(): { s0: bigint; s1: bigint } {
+    return { s0: this.s0, s1: this.s1 }
+  }
+
+  setState(state: { s0: bigint; s1: bigint }): void {
+    this.s0 = state.s0
+    this.s1 = state.s1
+  }
+
   next(): number {
     let s1 = this.s0
     const s0 = this.s1
