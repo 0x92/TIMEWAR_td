@@ -187,9 +187,9 @@ LocalStorage Save/Load mit Versionsmigration. MainMenu: Fraktionswahl; Modifier 
 
 ## 11) Telemetrie, Tests, Balancing
 
-- [ ] T-100: Telemetrie (Heatmaps, APM, Rewind-Nutzung, Tower-Mix)
-- [ ] T-101: Tests (ECS, RNG, Damage, Path) + Property-Test (Seed-Replay)
-- [ ] T-102: Balancing-Pass v1 (3 viable Build-Orders, keine Dominanz)
+- [x] T-100: Telemetrie (Heatmaps, APM, Rewind-Nutzung, Tower-Mix)
+- [x] T-101: Tests (ECS, RNG, Damage, Path) + Property-Test (Seed-Replay)
+- [x] T-102: Balancing-Pass v1 (3 viable Build-Orders, keine Dominanz)
 
 **Prompt für Codex:**
 
