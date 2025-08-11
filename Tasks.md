@@ -201,8 +201,8 @@ Dev-Overlay zeigt Live-Metriken. Vitest-Coverage ≥ 90 % für /engine & /combat
 
 ## 12) Performance & Accessibility
 
-- [ ] T-110: Render-Optimierung (Batch, QuadTree, Pools) — 60 FPS @ 500+ Entities
-- [ ] T-111: Accessibility (Farbenblind, Reduced Motion, UI-Skalierung, Persistenz)
+ - [x] T-110: Render-Optimierung (Batch, QuadTree, Pools) — 60 FPS @ 500+ Entities
+ - [x] T-111: Accessibility (Farbenblind, Reduced Motion, UI-Skalierung, Persistenz)
 
 **Prompt für Codex:**
 
