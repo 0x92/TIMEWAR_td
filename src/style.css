@@ -11,6 +11,8 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  --ui-scale: 1;
 }
 
 a {
@@ -26,6 +28,7 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
+  font-size: calc(16px * var(--ui-scale));
 }
 
 h1 {
@@ -95,6 +98,15 @@ button:hover {
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
+}
+
+:root[data-color-blind='1'] {
+  filter: grayscale(1);
+}
+
+.reduced-motion * {
+  animation: none !important;
+  transition: none !important;
 }
 
 @media (prefers-color-scheme: light) {
