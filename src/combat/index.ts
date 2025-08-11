@@ -1,1 +1,3 @@
-// placeholder for combat module
+export * from './damage'
+export * from './status'
+export * from './projectile'
