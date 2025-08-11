@@ -130,10 +130,10 @@ Implementiere Factories/Behaviors anhand der JSON-Daten. Tooltips generieren aus
 
 ## 7) Zeit-Mechaniken (USP)
 
-- [ ] T-060: Rewind integriert (Ressourcenverbrauch, UI, No-Dupe-Bugs)
-- [ ] T-061: Phase-Shift integriert (Kosten über Stabilität, Riss-Risiko)
-- [ ] T-062: Paradoxon-Meter + 3 Events (Dinos, Nano, Zeitsturm)
-- [ ] T-063: Epoch-Overlay integriert (Buffs/Resists + Countdown)
+- [x] T-060: Rewind integriert (Ressourcenverbrauch, UI, No-Dupe-Bugs)
+- [x] T-061: Phase-Shift integriert (Kosten über Stabilität, Riss-Risiko)
+- [x] T-062: Paradoxon-Meter + 3 Events (Dinos, Nano, Zeitsturm)
+- [x] T-063: Epoch-Overlay integriert (Buffs/Resists + Countdown)
 
 **Prompt für Codex:**
 
