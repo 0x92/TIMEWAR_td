@@ -85,9 +85,9 @@ Overlay: Engine-Flag + UI-Icon + Buff-Zonen. Tests: Pfadänderung reproduzierbar
 
 ## 4) Kampfsystem, Projektile, Status
 
-- [ ] T-030: Schadensmodell (physisch/elementar, Armor, Pen, Crit, DoT, Stun)
-- [ ] T-031: Projektile (linear, arcing, chain, beam) + visuelle Demos
-- [ ] T-032: Status-Effekte (Slow, Burn, Poison, Root, Vulnerable, Bleed)
+- [x] T-030: Schadensmodell (physisch/elementar, Armor, Pen, Crit, DoT, Stun)
+- [x] T-031: Projektile (linear, arcing, chain, beam) + visuelle Demos
+- [x] T-032: Status-Effekte (Slow, Burn, Poison, Root, Vulnerable, Bleed)
 
 **Prompt für Codex:**
 
