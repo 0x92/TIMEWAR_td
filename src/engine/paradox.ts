@@ -16,6 +16,7 @@ export class ParadoxMeter {
   private readonly threshold: number
   private readonly rng: Xorshift128Plus
   private readonly events: Weighted<ParadoxEvent>[]
+  private listeners: Array<(v: number) => void> = []
 
   constructor(seed: bigint, threshold = 100, events?: Weighted<ParadoxEvent>[]) {
     this.threshold = threshold
@@ -30,9 +31,21 @@ export class ParadoxMeter {
 
   add(amount: number): ParadoxEvent | undefined {
     this.value += amount
-    if (this.value < this.threshold) return undefined
+    if (this.value < this.threshold) {
+      this.emit()
+      return undefined
+    }
     this.value = 0
+    this.emit()
     return this.pickEvent()
+  }
+
+  onChange(cb: (value: number) => void): void {
+    this.listeners.push(cb)
+  }
+
+  private emit(): void {
+    for (const cb of this.listeners) cb(this.value)
   }
 
   private pickEvent(): ParadoxEvent {

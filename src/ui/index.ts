@@ -1,2 +1,6 @@
 export * from './hud'
 export * from './time'
+export * from './timeline'
+export * from './controls'
+export * from './overlayWheel'
+export * from './build'

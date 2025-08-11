@@ -2,12 +2,21 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + TS</title>
+    <title>Zeitbruch</title>
   </head>
   <body>
-    <div id="app"></div>
+    <div id="hud">
+      <div id="resources">
+        Gold: <span id="res-gold">0</span>
+        Chrono: <span id="res-chrono">0</span>
+        Stability: <span id="res-stability">0</span>
+      </div>
+      <div id="paradox">Paradox: <span id="paradox-meter">0</span>%</div>
+      <div id="wave">Wave: <span id="wave-counter">0</span></div>
+      <div id="timeline" class="timeline"></div>
+    </div>
+    <canvas id="game"></canvas>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>

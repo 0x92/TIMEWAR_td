@@ -1,26 +1,47 @@
 import './style.css'
-import typescriptLogo from './typescript.svg'
-import viteLogo from '/vite.svg'
-import { setupCounter } from './counter.ts'
-import { add } from '@utils/math'
+import { ResourceManager, ParadoxMeter, WaveTracker, WaveSpawner } from '@engine/index'
+import type { Wave } from '@content/waves'
+import { bindResource, bindParadox, bindWave } from '@ui/hud'
+import { computeMarkers, renderTimeline } from '@ui/timeline'
+import { ControlSettings } from '@ui/controls'
+import { OverlayWheel } from '@ui/overlayWheel'
 
-document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
-  <div>
-    <a href="https://vite.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://www.typescriptlang.org/" target="_blank">
-      <img src="${typescriptLogo}" class="logo vanilla" alt="TypeScript logo" />
-    </a>
-    <h1>Vite + TypeScript</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite and TypeScript logos to learn more
-    </p>
-  </div>
-`
+// basic setup
+const resources = new ResourceManager()
+const paradox = new ParadoxMeter(1n)
+const waves = new WaveTracker()
 
-console.log('add demo', add(1, 2))
-setupCounter(document.querySelector<HTMLButtonElement>('#counter')!)
+bindResource(resources, 'gold', document.getElementById('res-gold')!)
+bindResource(resources, 'chrono', document.getElementById('res-chrono')!)
+bindResource(resources, 'stability', document.getElementById('res-stability')!)
+bindParadox(paradox, document.getElementById('paradox-meter')!)
+bindWave(waves, document.getElementById('wave-counter')!)
+
+resources.add('gold', 100)
+resources.add('chrono', 50)
+resources.add('stability', 30)
+
+const spawner = new WaveSpawner(
+  [
+    { subwaves: [{ enemy: 'raptor', count: 3, delay: 0, interval: 1 }] },
+    { subwaves: [{ enemy: 'knight', count: 2, delay: 0, interval: 1 }] },
+  ] as Wave[],
+  1n,
+)
+const plan = spawner.getPlan()
+const markers = computeMarkers(plan, 0, 10)
+renderTimeline(markers, document.getElementById('timeline')!)
+
+const controls = new ControlSettings({ 'overlay:prev': 'q', 'overlay:next': 'e' })
+const wheel = new OverlayWheel(controls, () => console.log('prev'), () => console.log('next'))
+window.addEventListener('keydown', e => wheel.handle(e))
+
+// demo paradox fill
+setInterval(() => {
+  paradox.add(5)
+}, 1000)
+
+// demo wave advance
+setInterval(() => {
+  waves.next()
+}, 5000)
