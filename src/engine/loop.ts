@@ -2,8 +2,13 @@ export type UpdateFn = (dt: number) => void
 
 export class FixedStepLoop {
   private accumulator = 0
+  private readonly update: UpdateFn
+  private readonly step: number
 
-  constructor(private readonly update: UpdateFn, private readonly step = 1 / 60) {}
+  constructor(update: UpdateFn, step = 1 / 60) {
+    this.update = update
+    this.step = step
+  }
 
   advance(dt: number): void {
     this.accumulator += dt

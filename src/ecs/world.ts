@@ -24,7 +24,7 @@ export class World {
     }
   }
 
-  query(...stores: ComponentStore<unknown>[]): Entity[] {
+  query(...stores: ComponentStore<object>[]): Entity[] {
     if (stores.length === 0) return []
     const smallest = stores.reduce((a, b) => (a.size < b.size ? a : b))
     const result: Entity[] = []

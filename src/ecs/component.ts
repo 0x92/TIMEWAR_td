@@ -1,6 +1,6 @@
 import type { Entity } from './entity'
 
-export class ComponentStore<T extends Record<string, unknown>> {
+export class ComponentStore<T extends object> {
   private data: Record<keyof T, T[keyof T][]> = {} as Record<
     keyof T,
     T[keyof T][]

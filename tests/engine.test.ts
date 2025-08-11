@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { FixedStepLoop, Xorshift128Plus } from '@engine/index'
+import { FixedStepLoop, SnapshotBuffer, Xorshift128Plus } from '@engine/index'
 
 describe('engine', () => {
   it('runs fixed-step updates', () => {
@@ -34,5 +34,37 @@ describe('engine', () => {
       0.6227989828702096,
     ])
     expect(seq1).toEqual(seq2)
+  })
+
+  it('captures and rewinds snapshots deterministically', () => {
+    interface State {
+      value: number
+      rng: { s0: bigint; s1: bigint }
+    }
+
+    const rng = new Xorshift128Plus(42n)
+    const buffer = new SnapshotBuffer<State>(0.1, 8)
+
+    const outputs: number[] = []
+    let state: State = { value: 0, rng: rng.getState() }
+
+    for (let i = 0; i < 10; i++) {
+      state.value += 1
+      outputs.push(rng.next())
+      state.rng = rng.getState()
+      buffer.capture(state)
+    }
+
+    const snapshot = buffer.rewind(0.5)!
+    rng.setState(snapshot.rng)
+    const replayOutputs: number[] = []
+    const final = buffer.replay(snapshot, 5, s => {
+      s.value += 1
+      replayOutputs.push(rng.next())
+      s.rng = rng.getState()
+    })
+
+    expect(final.value).toBe(state.value)
+    expect(replayOutputs).toEqual(outputs.slice(5))
   })
 })
