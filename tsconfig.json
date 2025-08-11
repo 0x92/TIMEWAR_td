@@ -23,7 +23,8 @@
       "@audio/*": ["audio/*"],
       "@scenes/*": ["scenes/*"],
       "@maps/*": ["maps/*"],
-      "@utils/*": ["utils/*"]
+      "@utils/*": ["utils/*"],
+      "@meta/*": ["meta/*"]
     },
 
     /* Linting */

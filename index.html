@@ -6,7 +6,15 @@
     <title>Zeitbruch</title>
   </head>
   <body>
-    <div id="hud">
+    <div id="menu">
+      <label for="faction-select">Faction:</label>
+      <select id="faction-select">
+        <option value="none">Neutral</option>
+        <option value="chronists">Chronisten</option>
+      </select>
+      <button id="start-btn">Start</button>
+    </div>
+    <div id="hud" style="display: none">
       <div id="resources">
         Gold: <span id="res-gold">0</span>
         Chrono: <span id="res-chrono">0</span>
@@ -15,6 +23,7 @@
       <div id="paradox">Paradox: <span id="paradox-meter">0</span>%</div>
       <div id="wave">Wave: <span id="wave-counter">0</span></div>
       <div id="timeline" class="timeline"></div>
+      <button id="rewind-btn">Rewind 1s</button>
     </div>
     <canvas id="game"></canvas>
     <script type="module" src="/src/main.ts"></script>
