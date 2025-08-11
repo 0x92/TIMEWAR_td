@@ -36,6 +36,16 @@ describe('engine', () => {
     expect(seq1).toEqual(seq2)
   })
 
+  it('replays identical RNG sequences across many seeds', () => {
+    for (let seed = 0n; seed < 50n; seed++) {
+      const r1 = new Xorshift128Plus(seed)
+      const r2 = new Xorshift128Plus(seed)
+      for (let i = 0; i < 5; i++) {
+        expect(r1.next()).toBe(r2.next())
+      }
+    }
+  })
+
   it('captures and rewinds snapshots deterministically', () => {
     interface State {
       value: number
