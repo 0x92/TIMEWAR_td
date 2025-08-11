@@ -1,95 +1,96 @@
-# ZEITBRUCH — Zeitreise-Tower-Defense im Browser
+# ZEITBRUCH — Time‑Bending Tower Defense for the Browser
 
-> **Vertical Slice Ziel:** 1 Map · 6–8 Wellen · 8 Türme · 8 Gegner · **Rewind**, **Phase-Shift**, **Epoch-Overlay**, **Artefakt-Draft**  
-> **Stack:** TypeScript · Vite · PNPM · (optional) Pixi.js/WebGL · Vitest · Playwright · GitHub Actions
+> **Vertical Slice Goal:** 1 map • 6–8 waves • 8 towers • 8 enemies • **Rewind**, **Phase‑Shift**, **Epoch Overlay**, **Artifact Draft**  
+> **Stack:** TypeScript • Vite • PNPM • (optional) Pixi.js/WebGL • Vitest • Playwright • GitHub Actions
 
 ![ZEITBRUCH](docs/hero-placeholder.png)
-*(Platzhalter – ersetze durch In-Game Screenshot/GIF)*
+*(Placeholder — replace with an in‑game screenshot/GIF)*
 
-![Badges](https://img.shields.io/badge/status-WIP-orange) ![CI](https://img.shields.io/badge/CI-GitHub%20Actions-blue) ![license](https://img.shields.io/badge/license-TBD-lightgrey)
+![Status](https://img.shields.io/badge/status-WIP-orange) ![CI](https://img.shields.io/badge/CI-GitHub%20Actions-blue) ![license](https://img.shields.io/badge/license-TBD-lightgrey)
 
 ---
 
-## Inhaltsverzeichnis
-- [Überblick](#überblick)
-- [Hauptfeatures](#hauptfeatures)
-- [Technischer Stack](#technischer-stack)
-- [Anforderungen](#anforderungen)
-- [Schnellstart](#schnellstart)
-- [Projektstruktur](#projektstruktur)
+## Table of Contents
+- [Overview](#overview)
+- [Key Features](#key-features)
+- [Tech Stack](#tech-stack)
+- [Requirements](#requirements)
+- [Quick Start](#quick-start)
+- [Project Structure](#project-structure)
 - [Scripts](#scripts)
-- [Content & Datengetriebenes Design](#content--datengesteuertes-design)
-- [Determinismus-Regeln](#determinismus-regeln)
-- [Zeit-Mechaniken](#zeit-mechaniken)
-- [Tests & Qualität](#tests--qualität)
-- [Performance & Accessibility Ziele](#performance--accessibility-ziele)
-- [Roadmap & Meilensteine](#roadmap--meilensteine)
+- [Data‑Driven Content](#data-driven-content)
+- [Determinism Rules](#determinism-rules)
+- [Time Mechanics](#time-mechanics)
+- [Tests & Quality](#tests--quality)
+- [Performance & Accessibility Targets](#performance--accessibility-targets)
+- [Roadmap & Milestones](#roadmap--milestones)
 - [Contributing](#contributing)
 - [Troubleshooting](#troubleshooting)
-- [Lizenz](#lizenz)
+- [License](#license)
 - [Credits](#credits)
+- [Contact](#contact)
 
 ---
 
-## Überblick
-**ZEITBRUCH** ist ein Tower-Defense mit **Zeit-Manipulation**: Du spulst Sekunden zurück, überblendest Epochen (mit anderen Buffs/Resistenzen) und veränderst Gegnerpfade „on the fly“. Jede Intervention füllt ein **Paradoxon-Meter** – stark, aber riskant.
+## Overview
+**ZEITBRUCH** is a tower defense about **mastering time**. Rewind the last seconds, shift enemy paths in real time, and overlay entire epochs to alter buffs and resistances. Every intervention fills a **Paradox Meter** — powerful, but risky.
 
-Dieses Repository zielt zuerst auf einen **Vertical Slice**, danach auf Early Access mit Meta-Progression, Telemetrie und PWA-Release.
-
----
-
-## Hauptfeatures
-- 🔁 **Rewind** (≥ 6 s): Rollback via Snapshots (100 ms) ohne Desync.
-- 🔀 **Phase-Shift**: Umschaltbare Pfadsegmente, deterministische Re-Pfadfindung.
-- 🕰️ **Epoch-Overlay**: Temporäre Epoche mit Map-Buffs/Resists (10–15 s).
-- ⚡ **Paradoxon-Events**: Bei 100% treten zufällige Ereignisse (seeded) auf.
-- 🧩 **Data-Driven Content**: Türme/Gegner/Wellen/Artefakte als JSON + Schemas.
-- 🧪 **Tests**: Vitest (Unit/Property), Playwright (E2E), CI mit GitHub Actions.
-- 📊 **Telemetry (Dev)**: Heatmaps, DPS/Leaks, Rewind-Nutzung, Tower-Mix.
-- 📱 **PWA & Mobile**: Responsive HUD, Safe Areas, Offline Vertical Slice.
+This repository first targets a **Vertical Slice**, then expands toward Early Access with meta‑progression, telemetry, and a PWA release.
 
 ---
 
-## Technischer Stack
+## Key Features
+- 🔁 **Rewind** (≥ 6 s): Snapshot rollback every 100 ms without desync.
+- 🔀 **Phase‑Shift**: Toggle path segments; deterministic re‑pathing.
+- 🕰️ **Epoch Overlay**: Temporary epoch layer with map buffs/resists (10–15 s).
+- ⚡ **Paradox Events**: At 100% trigger weighted, seeded events.
+- 🧩 **Data‑Driven**: Towers, enemies, waves, artifacts in JSON with schemas.
+- 🧪 **Testing**: Vitest (unit/property) and Playwright (E2E); CI via GitHub Actions.
+- 📊 **Dev Telemetry**: Heatmaps, DPS/leaks, rewind usage, tower mix.
+- 📱 **PWA & Mobile**: Responsive HUD, safe areas, offline vertical slice.
+
+---
+
+## Tech Stack
 - **Core:** TypeScript, Vite (dev server & build)
-- **Rendering:** Canvas 2D oder WebGL (Pixi.js optional)
-- **Architektur:** ECS (Entities/Components/Systems)
-- **Tests:** Vitest (Unit), Playwright (E2E)
+- **Rendering:** Canvas 2D or WebGL (Pixi.js optional)
+- **Architecture:** ECS (Entities/Components/Systems)
 - **Audio:** WebAudio API
-- **CI/CD:** GitHub Actions, optional Pages/Netlify Preview
-- **Package:** PNPM, Node ≥ 20 LTS
+- **Testing:** Vitest (unit), Playwright (E2E)
+- **CI/CD:** GitHub Actions (lint/test/build/preview)
+- **Package Manager:** PNPM, Node ≥ 20 LTS
 
 ---
 
-## Anforderungen
-- **Node:** 20.x (LTS) – via `.nvmrc`
+## Requirements
+- **Node:** 20.x (LTS) — managed via `.nvmrc`
 - **PNPM:** ≥ 9  
-- **Browser:** Chrome/Edge/Firefox aktuell (WebGL empfohlen)
+- **Browsers:** Latest Chrome/Edge/Firefox (WebGL recommended)
 
 ---
 
-## Schnellstart
+## Quick Start
 ```bash
-# 1) Dependencies
+# 1) Install deps
 pnpm i
 
-# 2) Dev-Server
+# 2) Run dev server
 pnpm dev
 # -> http://localhost:5173
 
-# 3) Tests (Unit)
+# 3) Unit tests
 pnpm test
 
-# 4) Lint & Types
+# 4) Lint & typecheck
 pnpm lint
 pnpm typecheck
 
-# 5) Build
+# 5) Build & preview
 pnpm build
 pnpm preview
 ```
 
-Optional: **Playwright** installieren und E2E ausführen
+Optional: **Playwright** install & run
 ```bash
 pnpm dlx playwright install --with-deps
 pnpm e2e
@@ -97,25 +98,25 @@ pnpm e2e
 
 ---
 
-## Projektstruktur
+## Project Structure
 ```
 /src
   /ecs            # Entity-Component-System
-  /engine         # Loop, RNG, Snapshots, Determinismus
-  /path           # Tilemap, A*, Phase-Shift
-  /combat         # Damage, Projektile, Status
-  /content        # JSON: Türme, Gegner, Wellen, Artefakte (+Schemas)
-  /ui             # HUD, Timeline, Build-UI, Overlay-Wheel
-  /audio          # AudioManager, SFX
+  /engine         # Loop, RNG, snapshots, determinism
+  /path           # Tilemap, A*, phase-shift
+  /combat         # Damage, projectiles, status effects
+  /content        # JSON: towers, enemies, waves, artifacts (+schemas)
+  /ui             # HUD, timeline, build UI, overlay wheel
+  /audio          # Audio manager, SFX
   /scenes         # Boot, MainMenu, Map
-  /maps           # Tiled-JSON + Overlays/Relikte
-  /utils          # Helpers, Types, Logging
-/tests            # Vitest Suiten
-/e2e              # Playwright
-/docs             # Screenshots, Specs
+  /maps           # Tiled JSON + overlays/relic nodes
+  /utils          # Helpers, types, logging
+/tests            # Vitest suites
+/e2e              # Playwright tests
+/docs             # Screenshots, specs
 ```
 
-**Wichtige Aliase (`tsconfig.json`)**: `@ecs`, `@engine`, `@path`, `@combat`, `@content`, `@ui`, `@audio`, `@scenes`, `@maps`, `@utils`
+**Aliases (`tsconfig.json`)**: `@ecs`, `@engine`, `@path`, `@combat`, `@content`, `@ui`, `@audio`, `@scenes`, `@maps`, `@utils`
 
 ---
 
@@ -138,13 +139,13 @@ pnpm e2e
 
 ---
 
-## Content & Datengesteuertes Design
-- **Schemas:** `content/*.schema.json` – CI validiert alle Content-Dateien.
-- **Beispiele:** `content/examples/*` – Referenzwerte für Tooltips & Tests.
-- **Waves:** `content/waves/*.json` – deterministische Spawns via Seed.
-- **Maps:** `maps/*.json` – Tiled-Layout, Pfadkanten, Overlay-Zonen, Relikte.
+## Data‑Driven Content
+- **Schemas:** `content/*.schema.json` — CI validates all content files.
+- **Examples:** `content/examples/*` — reference values for tooltips & tests.
+- **Waves:** `content/waves/*.json` — deterministic spawns via seed.
+- **Maps:** `maps/*.json` — Tiled layout, path edges, overlay zones, relics.
 
-Beispiel Tower (Railgun):
+Example tower (Railgun):
 ```json
 {
   "id": "railgun",
@@ -160,70 +161,70 @@ Beispiel Tower (Railgun):
 
 ---
 
-## Determinismus-Regeln
-**Definition of Done (Auszug):**
-- Fester **Fixed-Step** (z. B. 60 Hz) in der Simulation, Render interpoliert.
-- Eigener RNG (`@engine/rng` Xorshift128+), **kein** `Math.random()` im Sim-Code.
-- Snapshot-Rewind: Ring-Buffer (≥ 6 s, 100 ms) mit deterministischem Replay.
-- Keine Zeit-Abfragen im Sim-Code (`Date.now()` verboten) – nur Ticks.
-- Re-Pathing bei Phase-Shift ist reproduzierbar (gleiches Seed ⇒ gleiche Pfade).
-- Unit- & Property-Tests sichern deterministisches Verhalten ab.
+## Determinism Rules
+**Definition of Done (excerpt):**
+- Fixed **simulation step** (e.g., 60 Hz); rendering interpolates.
+- Project RNG: `@engine/rng` (Xorshift128+). **No** `Math.random()` in sim code.
+- Snapshot rewind: ring buffer (≥ 6 s, 100 ms) with deterministic replay.
+- No wall‑clock in sim (`Date.now()` forbidden) — use ticks only.
+- Re‑pathing during phase‑shift must be reproducible (same seed ⇒ same paths).
+- Unit & property tests enforce determinism.
 
 ---
 
-## Zeit-Mechaniken
-- **Rewind:** Spult die letzten Sekunden zurück (Positionen/HP/Status). Kostet **Chrono-Energie**, erhöht **Entropie** (Balancing).
-- **Phase-Shift:** Aktiviert/Deaktiviert alternative Pfadkanten. Erhöht Tower-Uptime, senkt **Stabilität**.
-- **Epoch-Overlay:** 10–15 s Epoche mit Buffs/Resists (z. B. Mittelalter → +Range Ballista).
-- **Paradoxon:** Eingriffe füllen das Meter; bei 100% triggert ein Ereignis (z. B. Dino-Stampede). Loot: **Anomalie-Kerne** (Meta).
+## Time Mechanics
+- **Rewind:** Roll back positions/HP/status for the last seconds. Costs **Chrono Energy**, raises **Entropy** (balancing).
+- **Phase‑Shift:** Activate/deactivate alternate path edges. Increases tower uptime, reduces **Stability**.
+- **Epoch Overlay:** 10–15 s epoch layer with buffs/resists (e.g., Medieval → +range for Ballista).
+- **Paradox:** Interventions fill the meter; at 100% a seeded event triggers (e.g., Dino stampede). Loot: **Anomaly Cores** (meta).
 
 ---
 
-## Tests & Qualität
-- **Unit/Component:** Vitest (Coverage-Ziel: ≥ 90% für `/engine` & `/combat`).
-- **Property-Test:** Gleiches Seed ⇒ gleichen Metrics-Checksum (Determinismus).
-- **E2E:** Playwright (Boot → Level → Rewind/Phase-Shift/Overlay Szenarien).
-- **CI:** Lint, Test, Build, Preview-Artifact/Pages.
+## Tests & Quality
+- **Unit/Component:** Vitest (coverage target ≥ 90% for `/engine` & `/combat`).
+- **Property test:** Same seed ⇒ same metrics checksum (determinism).
+- **E2E:** Playwright (Boot → Level → Rewind/Phase‑Shift/Overlay scenarios).
+- **CI:** Lint, test, build, preview artifact/pages.
 
-PR-Checkliste:
-- [ ] Tests grün (Unit/E2E), Coverage OK
-- [ ] Keine nondeterministischen APIs im Sim-Code
-- [ ] JSON-Content validiert (Schemas)
-- [ ] README/Docs aktualisiert
-- [ ] Demo-Scene oder GIF für das Feature
-
----
-
-## Performance & Accessibility Ziele
-- **Performance:** 60 FPS @ 500+ Entitäten (Desktop), stabile Frametime (< 4 ms Stutter).
-- **Mobile:** ≥ 50 FPS auf Mittelklasse-Android; adaptive Qualitätsstufen.
-- **Accessibility:** Farbenblind-Modus, reduzierte Motion, skalierbare UI, persistente Settings.
+PR checklist:
+- [ ] All tests green (unit/E2E), coverage OK  
+- [ ] No non‑deterministic APIs in sim code  
+- [ ] JSON content validated (schemas)  
+- [ ] README/Docs updated  
+- [ ] Demo scene or GIF included for the feature
 
 ---
 
-## Roadmap & Meilensteine
-Die detaillierten Aufgaben, Prompts und Akzeptanzkriterien stehen in **[Tasks.md](./Tasks.md)**.
+## Performance & Accessibility Targets
+- **Desktop performance:** 60 FPS @ 500+ entities; stable frametime (< 4 ms stutter).
+- **Mobile:** ≥ 50 FPS on mid‑range Android; adaptive quality tiers.
+- **Accessibility:** Color‑blind palette, reduced motion, scalable UI, persistent settings.
 
-**Meilensteine (Kurz):**
-1. **Engine Ready** — ECS, Determinismus, Rewind-Prototyp
-2. **Map & Paths** — Phase-Shift, Overlay-Layer
-3. **Combat Core** — Damage/Projektile/Status
-4. **Slice Content** — 8 Türme, 8 Gegner, 6 Artefakte
-5. **Zeit-Mechaniken** — Rewind/Shift/Paradoxon/Overlay integriert
-6. **UX & Audio** — HUD/Timeline/Build-UI/Overlay-Wheel/WebAudio
-7. **Meta & Tests** — Tech-Tree, Save/Load, Telemetrie, Tests
-8. **Perf & PWA** — Optimierungen, Offline-Bundle
-9. **Docs** — Architektur & Content-Guides
+---
+
+## Roadmap & Milestones
+All detailed tasks, prompts, and acceptance criteria live in **[Tasks.md](./Tasks.md)**.
+
+**Milestones (short):**
+1. **Engine Ready** — ECS, determinism, rewind prototype  
+2. **Map & Paths** — Phase‑Shift, overlay layers  
+3. **Combat Core** — Damage/projectiles/status  
+4. **Slice Content** — 8 towers, 8 enemies, 6 artifacts  
+5. **Time Mechanics** — Rewind/Shift/Paradox/Overlay integrated  
+6. **UX & Audio** — HUD/Timeline/Build UI/Overlay Wheel/WebAudio  
+7. **Meta & Tests** — Tech tree, save/load, telemetry, tests  
+8. **Perf & PWA** — Optimizations, offline bundle  
+9. **Docs** — Architecture & Content guides
 
 ---
 
 ## Contributing
-- **Commit-Standard:** Conventional Commits (feat, fix, refactor, test, chore, docs, perf, ci, build).
-- **Branching:** Feature-Branches, kleine PRs (1–3 Tasks), Draft-PRs willkommen.
-- **Style:** ESLint/Prettier müssen sauber sein; TypeScript strict.
-- **Code-Reviews:** Fokus auf Determinismus, Datengetriebenheit, Tests.
+- **Commit standard:** Conventional Commits (`feat`, `fix`, `refactor`, `test`, `chore`, `docs`, `perf`, `ci`, `build`).
+- **Branching:** Feature branches; small PRs (1–3 tasks); draft PRs welcome.
+- **Style:** ESLint/Prettier clean; TypeScript `strict`.
+- **Reviews:** Focus on determinism, data‑driven design, testing.
 
-Beispiel Commit:
+Example:
 ```
 feat(engine): add snapshot ring buffer (6s @ 100ms) and rewind API
 ```
@@ -231,29 +232,29 @@ feat(engine): add snapshot ring buffer (6s @ 100ms) and rewind API
 ---
 
 ## Troubleshooting
-- **Ruckler/GC-Spikes:** Pools aktiv? Partikel begrenzen, Dev-Overlay checken.
-- **Desync nach Rewind:** RNG-Position korrekt? Keine Side-Effects in Systems?
-- **WebGL-Fehler:** Fallback auf Canvas 2D aktivieren; Kontextverlust behandeln.
-- **Playwright rot:** `pnpm dlx playwright install --with-deps` ausgeführt?
-- **Seed-Replay anders:** Prüfe Version/Hash in Replay-Datei; Content geändert?
+- **Jank/GC spikes:** Are pools active? Limit particles; check dev overlay.
+- **Desync after rewind:** RNG index correct? Side‑effects in systems?
+- **WebGL errors:** Enable Canvas 2D fallback; handle context loss.
+- **Playwright failing:** Run `pnpm dlx playwright install --with-deps`.
+- **Seed replay differs:** Verify version/hash in replay file; content changed?
 
 ---
 
-## Lizenz
-**TBD** – wähle z. B. MIT (offen) oder AGPL-3.0 (Copyleft).  
-Datei `LICENSE` hinzufügen und Badge oben anpassen.
+## License
+**TBD** — pick e.g. MIT (permissive) or AGPL‑3.0 (copyleft).  
+Add `LICENSE` and adjust the badge above.
 
 ---
 
 ## Credits
-- Platzhalter-Grafiken: [Kenney.nl](https://kenney.nl) (CC0) — ersetzen in finalem Build.
-- Fonts/Audio: Bitte nur lizenzkonforme Assets verwenden (Verzeichnis `docs/ASSETS.md` pflegen).
+- Placeholder graphics: [Kenney.nl](https://kenney.nl) (CC0) — replace for final build.
+- Fonts/Audio: Use license‑compliant assets only (track in `docs/ASSETS.md`).
 
 ---
 
-## Kontakt
-Issues & Ideen bitte als GitHub Issue anlegen. Für größere Beiträge: PR mit kurzer Demo/GIF.
+## Contact
+Please open a GitHub Issue for ideas/bugs. For larger contributions, include a short demo/GIF with your PR.
 
 ---
 
-> „Zeit ist die schärfste Waffe – lerne, sie zu führen.“ — ZEITBRUCH
+> “Time is the sharpest blade — learn to wield it.” — ZEITBRUCH
