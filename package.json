@@ -1,0 +1,29 @@
+{
+  "name": "zeitbruch",
+  "private": true,
+  "version": "0.0.1",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.33.0",
+    "@types/node": "^22.7.4",
+    "@typescript-eslint/eslint-plugin": "^8.8.0",
+    "@typescript-eslint/parser": "^8.8.0",
+    "eslint": "^9.13.0",
+    "eslint-config-prettier": "^9.1.0",
+    "globals": "^16.3.0",
+    "prettier": "^3.3.3",
+    "typescript": "~5.8.3",
+    "vite": "^7.1.0",
+    "vite-tsconfig-paths": "^5.1.2",
+    "vitest": "^2.1.4"
+  }
+}
