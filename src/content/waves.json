@@ -1,0 +1,15 @@
+{
+  "waves": [
+    {
+      "subwaves": [
+        { "enemy": "raptor", "count": 3, "interval": 0.5, "delay": 0, "modifiers": ["fast", "strong"] },
+        { "enemy": "knight", "count": 1, "interval": 0, "delay": 2 }
+      ]
+    },
+    {
+      "subwaves": [
+        { "enemy": "automat", "count": 2, "interval": 1, "delay": 0 }
+      ]
+    }
+  ]
+}

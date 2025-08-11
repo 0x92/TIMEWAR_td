@@ -1,1 +1,1 @@
-// placeholder for content module
+export * from './waves'
