@@ -70,9 +70,9 @@ Snapshots: src/engine/snapshots.ts (capture/rewind/replay). Vitest: Desync-Schut
 
 ## 3) Pfade, Phase-Shift & Tilemap
 
-- [ ] T-020: Tilemap-Import (Tiled JSON) + Pfadgraph (A\*)
-- [ ] T-021: Phase-Shift: toggelbare Kanten/Segmente, deterministischer Recompute
-- [ ] T-022: Epoch-Overlay: Map-Layer + zonale Buffs/Resists (10–15 s)
+- [x] T-020: Tilemap-Import (Tiled JSON) + Pfadgraph (A\*)
+- [x] T-021: Phase-Shift: toggelbare Kanten/Segmente, deterministischer Recompute
+- [x] T-022: Epoch-Overlay: Map-Layer + zonale Buffs/Resists (10–15 s)
 
 **Prompt für Codex:**
 
