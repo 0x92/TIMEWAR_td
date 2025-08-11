@@ -162,7 +162,7 @@ Build-UI mit Ghost-Placement, Reichweite, Validierung. Overlay-Wheel auf Q/E, Re
 
 ## 9) Audio
 
-- [ ] T-080: WebAudio-SFX (Treffer, Kill, Rewind, Overlay) + Mixer (Mute/Vol)
+- [x] T-080: WebAudio-SFX (Treffer, Kill, Rewind, Overlay) + Mixer (Mute/Vol)
 
 **Prompt für Codex:**
 
