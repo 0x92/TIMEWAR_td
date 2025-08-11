@@ -115,9 +115,9 @@ Spawner deterministisch (seeded). Tests für identische Seeds ⇒ identischer Sp
 
 ## 6) Content v1 (Vertical Slice)
 
-- [ ] T-050: Türme (8): Teergrube, Langbogen, Gatling, Mörser, Tesla, Drohnenbucht, Railgun, Grav-Well
-- [ ] T-051: Gegner (8): Raptor, Schildträger, Ritter, Automat, Infiltrator, Phasenläufer, Singularitätsbrut, Wyrmling
-- [ ] T-052: Artefakte (6): Sandschiff, Axiom-Keil, Uhrwerk-Herz, Kohlenkiste, Paradox-Scherbe, Stundenglas-Fehler
+- [x] T-050: Türme (8): Teergrube, Langbogen, Gatling, Mörser, Tesla, Drohnenbucht, Railgun, Grav-Well
+- [x] T-051: Gegner (8): Raptor, Schildträger, Ritter, Automat, Infiltrator, Phasenläufer, Singularitätsbrut, Wyrmling
+- [x] T-052: Artefakte (6): Sandschiff, Axiom-Keil, Uhrwerk-Herz, Kohlenkiste, Paradox-Scherbe, Stundenglas-Fehler
 
 **Prompt für Codex:**
 

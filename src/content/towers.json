@@ -1,0 +1,12 @@
+{
+  "towers": [
+    {"id": "tar_pit", "name": "Teergrube", "damage": 5, "range": 2, "fireRate": 1, "effect": "slow"},
+    {"id": "longbow", "name": "Langbogen", "damage": 8, "range": 5, "fireRate": 1},
+    {"id": "gatling", "name": "Gatling", "damage": 2, "range": 3, "fireRate": 5},
+    {"id": "mortar", "name": "Mörser", "damage": 12, "range": 6, "fireRate": 0.5, "splash": 1},
+    {"id": "tesla", "name": "Tesla", "damage": 6, "range": 4, "fireRate": 1.5, "chain": 3},
+    {"id": "drone_bay", "name": "Drohnenbucht", "damage": 3, "range": 4, "fireRate": 2},
+    {"id": "railgun", "name": "Railgun", "damage": 20, "range": 7, "fireRate": 0.2},
+    {"id": "grav_well", "name": "Grav-Well", "damage": 0, "range": 3, "fireRate": 0.1, "effect": "pull"}
+  ]
+}

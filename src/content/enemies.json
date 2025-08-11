@@ -1,0 +1,12 @@
+{
+  "enemies": [
+    {"id": "raptor", "name": "Raptor", "hp": 30, "speed": 1.2},
+    {"id": "shield_bearer", "name": "Schildträger", "hp": 60, "speed": 0.8, "armor": 0.2},
+    {"id": "knight", "name": "Ritter", "hp": 80, "speed": 0.7, "armor": 0.3},
+    {"id": "automaton", "name": "Automat", "hp": 50, "speed": 1.0},
+    {"id": "infiltrator", "name": "Infiltrator", "hp": 25, "speed": 1.5},
+    {"id": "phase_runner", "name": "Phasenläufer", "hp": 40, "speed": 1.0, "phaseShift": true},
+    {"id": "singularity_brood", "name": "Singularitätsbrut", "hp": 100, "speed": 0.6},
+    {"id": "wyrmling", "name": "Wyrmling", "hp": 20, "speed": 1.3}
+  ]
+}

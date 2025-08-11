@@ -1,0 +1,10 @@
+{
+  "artifacts": [
+    {"id": "sandship", "name": "Sandschiff", "effect": "speed", "value": 0.1},
+    {"id": "axiom_wedge", "name": "Axiom-Keil", "effect": "armor", "value": 0.2},
+    {"id": "clockwork_heart", "name": "Uhrwerk-Herz", "effect": "regen", "value": 1},
+    {"id": "coal_crate", "name": "Kohlenkiste", "effect": "damage", "value": 2},
+    {"id": "paradox_shard", "name": "Paradox-Scherbe", "effect": "rewind", "value": 0.5},
+    {"id": "hourglass_fault", "name": "Stundenglas-Fehler", "effect": "freeze", "value": 1}
+  ]
+}
