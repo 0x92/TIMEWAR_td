@@ -33,6 +33,10 @@ export class EpochOverlay {
     return this.active
   }
 
+  getRemaining(): number {
+    return this.remaining
+  }
+
   getModifiers(x: number, y: number): { buff: number; resist: number } {
     if (!this.active) return { buff: 0, resist: 0 }
     let buff = 0
