@@ -16,6 +16,8 @@ import { BuildUI } from '@ui/build'
 import { bindRewindButton } from '@ui/time'
 import { MetaProgression, factions, type FactionId } from '@meta/index'
 import { FixedStepLoop } from '@engine/loop'
+import { AudioManager } from '@audio/index'
+import type { ParadoxEvent } from '@engine/paradox'
 
 if (import.meta.env.DEV) {
   import('@maps/editor')
@@ -41,6 +43,21 @@ function startRun(factionId: FactionId): void {
   const resources = new ResourceManager()
   const paradox = new ParadoxMeter(1n)
   const waves = new WaveTracker()
+  const eventEl = document.getElementById('paradox-event')!
+
+  const audioCtx = new AudioContext()
+  const audio = new AudioManager(audioCtx)
+  function createBeep(freq: number): AudioBuffer {
+    const buffer = audioCtx.createBuffer(1, audioCtx.sampleRate * 0.1, audioCtx.sampleRate)
+    const data = buffer.getChannelData(0)
+    for (let i = 0; i < data.length; i++) {
+      data[i] = Math.sin((i / audioCtx.sampleRate) * Math.PI * 2 * freq)
+    }
+    return buffer
+  }
+  audio.addSfx('hit', createBeep(440))
+  audio.addSfx('kill', createBeep(220))
+  audio.addSfx('rewind', createBeep(880))
 
   bindResource(resources, 'gold', document.getElementById('res-gold')!)
   bindResource(resources, 'chrono', document.getElementById('res-chrono')!)
@@ -196,6 +213,7 @@ function startRun(factionId: FactionId): void {
         if (target) {
           target.hp -= 10
           t.cd = 1
+          audio.play('hit')
         }
       }
     }
@@ -204,6 +222,7 @@ function startRun(factionId: FactionId): void {
       if (en.hp <= 0) {
         enemies.splice(i, 1)
         resources.add('gold', 5)
+        audio.play('kill')
         continue
       }
       if (en.waypoint >= path.length) {
@@ -228,6 +247,13 @@ function startRun(factionId: FactionId): void {
       ctx.lineTo(canvas.width, y)
       ctx.stroke()
     }
+    ctx.strokeStyle = '#888'
+    ctx.beginPath()
+    ctx.moveTo(path[0].x, path[0].y)
+    for (let i = 1; i < path.length; i++) {
+      ctx.lineTo(path[i].x, path[i].y)
+    }
+    ctx.stroke()
     ctx.fillStyle = '#0f0'
     for (const t of towers) {
       ctx.beginPath()
@@ -239,6 +265,14 @@ function startRun(factionId: FactionId): void {
       ctx.beginPath()
       ctx.arc(e.x, e.y, 10, 0, Math.PI * 2)
       ctx.fill()
+      const target = path[e.waypoint]
+      if (target) {
+        ctx.strokeStyle = '#ff0'
+        ctx.beginPath()
+        ctx.moveTo(e.x, e.y)
+        ctx.lineTo(target.x, target.y)
+        ctx.stroke()
+      }
     }
     const ghost = build.getGhost(mouse.x, mouse.y)
     if (ghost.range > 0) {
@@ -265,8 +299,15 @@ function startRun(factionId: FactionId): void {
   bindRewindButton(document.getElementById('rewind-btn')!, rewind, 1, applyState)
   setInterval(() => rewind.capture(getState()), 100)
 
+  function handleParadoxEvent(ev: ParadoxEvent): void {
+    eventEl.textContent = `Paradox Event: ${ev}`
+    audio.play('rewind')
+    enemies.push({ x: path[0].x, y: path[0].y, hp: 20, speed: 40, waypoint: 1 })
+  }
+
   setInterval(() => {
-    paradox.add(5)
+    const ev = paradox.add(5)
+    if (ev) handleParadoxEvent(ev)
   }, 1000)
 
   setInterval(() => {
