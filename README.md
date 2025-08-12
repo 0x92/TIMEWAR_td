@@ -206,16 +206,16 @@ PR checklist:
 ## Roadmap & Milestones
 All detailed tasks, prompts, and acceptance criteria live in **[Tasks.md](./Tasks.md)**.
 
-**Milestones (short):**
-1. **Engine Ready** — ECS, determinism, rewind prototype  
-2. **Map & Paths** — Phase‑Shift, overlay layers  
-3. **Combat Core** — Damage/projectiles/status  
-4. **Slice Content** — 8 towers, 8 enemies, 6 artifacts  
-5. **Time Mechanics** — Rewind/Shift/Paradox/Overlay integrated  
-6. **UX & Audio** — HUD/Timeline/Build UI/Overlay Wheel/WebAudio  
-7. **Meta & Tests** — Tech tree, save/load, telemetry, tests  
-8. **Perf & PWA** — Optimizations, offline bundle  
-9. **Docs** — Architecture & Content guides
+**Milestones (checklist):**
+- [x] **Engine Ready** — ECS, determinism, rewind prototype
+- [x] **Map & Paths** — Phase‑Shift, overlay layers
+- [x] **Combat Core** — Damage/projectiles/status
+- [x] **Slice Content** — 8 towers, 8 enemies, 6 artifacts
+- [x] **Time Mechanics** — Rewind/Shift/Paradox/Overlay integrated
+- [ ] **UX & Audio** — HUD/Timeline/Build UI/Overlay Wheel/WebAudio
+- [x] **Meta & Tests** — Tech tree, save/load, telemetry, tests
+- [ ] **Perf & PWA** — Optimizations, offline bundle
+- [ ] **Docs** — Architecture & Content guides
 
 ---
 

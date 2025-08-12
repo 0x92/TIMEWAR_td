@@ -239,13 +239,13 @@ Erstelle die Docs. Ziel: Onboarding ≤ 30 Minuten. CI validiert JSON-Schemas.
 
 ## 15) Milestones (Häkchen-Übersicht)
 
-- [ ] MS1: Engine Ready — T-001..T-012, T-020
-- [ ] MS2: Map & Paths — T-021..T-022
-- [ ] MS3: Combat Core — T-030..T-032
-- [ ] MS4: Slice Content — T-040..T-052
-- [ ] MS5: Zeit-Mechaniken — T-060..T-063
+- [x] MS1: Engine Ready — T-001..T-012, T-020
+- [x] MS2: Map & Paths — T-021..T-022
+- [x] MS3: Combat Core — T-030..T-032
+- [x] MS4: Slice Content — T-040..T-052
+- [x] MS5: Zeit-Mechaniken — T-060..T-063
 - [ ] MS6: UX & Audio — T-070..T-072, T-080
-- [ ] MS7: Meta & Tests — T-090..T-102
+- [x] MS7: Meta & Tests — T-090..T-102
 - [ ] MS8: Perf & PWA — T-110..T-120
 - [ ] MS9: Docs — T-130..T-131
 
