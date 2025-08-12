@@ -1,0 +1,10 @@
+{
+  "enemies": [
+    {
+      "id": "example_enemy",
+      "name": "Example Enemy",
+      "hp": 50,
+      "speed": 1
+    }
+  ]
+}

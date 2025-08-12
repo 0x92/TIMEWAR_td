@@ -1,0 +1,37 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "WavesFile",
+  "type": "object",
+  "required": ["waves"],
+  "additionalProperties": false,
+  "properties": {
+    "waves": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["subwaves"],
+        "additionalProperties": false,
+        "properties": {
+          "subwaves": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["enemy", "count"],
+              "additionalProperties": false,
+              "properties": {
+                "enemy": { "type": "string" },
+                "count": { "type": "number" },
+                "interval": { "type": "number" },
+                "delay": { "type": "number" },
+                "modifiers": {
+                  "type": "array",
+                  "items": { "type": "string" }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

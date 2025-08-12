@@ -1,0 +1,9 @@
+{
+  "waves": [
+    {
+      "subwaves": [
+        { "enemy": "example_enemy", "count": 5, "interval": 0.5, "delay": 0 }
+      ]
+    }
+  ]
+}

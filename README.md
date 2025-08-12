@@ -24,6 +24,7 @@
 - [Tests & Quality](#tests--quality)
 - [Performance & Accessibility Targets](#performance--accessibility-targets)
 - [Roadmap & Milestones](#roadmap--milestones)
+- [Documentation](#documentation)
 - [Contributing](#contributing)
 - [Troubleshooting](#troubleshooting)
 - [License](#license)
@@ -216,6 +217,13 @@ All detailed tasks, prompts, and acceptance criteria live in **[Tasks.md](./Task
 7. **Meta & Tests** — Tech tree, save/load, telemetry, tests  
 8. **Perf & PWA** — Optimizations, offline bundle  
 9. **Docs** — Architecture & Content guides
+
+---
+
+## Documentation
+- [ARCHITEKTUR.md](ARCHITEKTUR.md)
+- [CONTENT_GUIDE.md](CONTENT_GUIDE.md)
+- [BALANCING_GUIDE.md](BALANCING_GUIDE.md)
 
 ---
 
