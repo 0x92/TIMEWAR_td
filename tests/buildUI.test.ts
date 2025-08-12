@@ -26,6 +26,7 @@ describe('build ui', () => {
     expect(ui.place(0.5, 0)).toBe(false)
     const ghost = ui.getGhost(2, 0)
     expect(ghost.valid).toBe(true)
+    expect(ui.getPlacements()).toHaveLength(1)
   })
 
   it('supports rebind', () => {
