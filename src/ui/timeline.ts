@@ -17,10 +17,20 @@ export function computeMarkers(
 
 export function renderTimeline(markers: number[], el: HTMLElement): void {
   el.innerHTML = ''
+  const progress = document.createElement('div')
+  progress.className = 'progress'
+  el.appendChild(progress)
   for (const m of markers) {
     const div = document.createElement('div')
     div.className = 'marker'
     div.style.left = `${Math.min(Math.max(m, 0), 1) * 100}%`
     el.appendChild(div)
+  }
+}
+
+export function setTimelineProgress(progress: number, el: HTMLElement): void {
+  const bar = el.querySelector<HTMLElement>('.progress')
+  if (bar) {
+    bar.style.width = `${Math.min(Math.max(progress, 0), 1) * 100}%`
   }
 }

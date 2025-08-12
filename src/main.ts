@@ -1,15 +1,15 @@
 import './style.css'
-import {
-  ResourceManager,
-  ParadoxMeter,
-  WaveTracker,
-  WaveSpawner,
-  SnapshotBuffer,
-  RewindController,
-} from '@engine/index'
-import type { Wave } from '@content/waves'
-import { bindResource, bindParadox, bindWave } from '@ui/hud'
-import { computeMarkers, renderTimeline } from '@ui/timeline'
+  import {
+    ResourceManager,
+    ParadoxMeter,
+    WaveTracker,
+    WaveSpawner,
+    SnapshotBuffer,
+    RewindController,
+  } from '@engine/index'
+  import type { Wave } from '@content/waves'
+  import { bindResource, bindParadox, bindWave } from '@ui/hud'
+  import { computeMarkers, renderTimeline, setTimelineProgress } from '@ui/timeline'
 import { ControlSettings } from '@ui/controls'
 import { OverlayWheel } from '@ui/overlayWheel'
 import { BuildUI } from '@ui/build'
@@ -79,9 +79,10 @@ function startRun(factionId: FactionId): void {
     ] as Wave[],
     1n,
   )
-  const plan = spawner.getPlan()
-  const markers = computeMarkers(plan, 0, 10)
-  renderTimeline(markers, document.getElementById('timeline')!)
+    const plan = spawner.getPlan()
+    const markers = computeMarkers(plan, 0, 10)
+    const timelineEl = document.getElementById('timeline')!
+    renderTimeline(markers, timelineEl)
 
   const controls = new ControlSettings({
     'overlay:prev': 'q',
@@ -288,6 +289,7 @@ function startRun(factionId: FactionId): void {
     const dt = (time - last) / 1000
     last = time
     loop.advance(dt)
+    setTimelineProgress(simTime / 10, timelineEl)
     render()
     requestAnimationFrame(frame)
   }
