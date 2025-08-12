@@ -226,8 +226,8 @@ Caching-Strategie für Assets/JSON, „Add to Home Screen“, Offline-Test.
 
 ## 14) Dokumentation
 
-- [ ] T-130: JSON-Schemas & Beispiele (towers/enemies/waves/artifacts)
-- [ ] T-131: ARCHITEKTUR.md, CONTENT_GUIDE.md, BALANCING_GUIDE.md
+ - [x] T-130: JSON-Schemas & Beispiele (towers/enemies/waves/artifacts)
+ - [x] T-131: ARCHITEKTUR.md, CONTENT_GUIDE.md, BALANCING_GUIDE.md
 
 **Prompt für Codex:**
 

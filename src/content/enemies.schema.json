@@ -1,0 +1,25 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "EnemiesFile",
+  "type": "object",
+  "required": ["enemies"],
+  "additionalProperties": false,
+  "properties": {
+    "enemies": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "hp", "speed"],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string" },
+          "name": { "type": "string" },
+          "hp": { "type": "number" },
+          "speed": { "type": "number" },
+          "armor": { "type": "number" },
+          "phaseShift": { "type": "boolean" }
+        }
+      }
+    }
+  }
+}

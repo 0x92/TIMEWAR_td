@@ -1,0 +1,10 @@
+{
+  "artifacts": [
+    {
+      "id": "example_artifact",
+      "name": "Example Artifact",
+      "effect": "speed",
+      "value": 1
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "TowersFile",
+  "type": "object",
+  "required": ["towers"],
+  "additionalProperties": false,
+  "properties": {
+    "towers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "damage", "range", "fireRate"],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string" },
+          "name": { "type": "string" },
+          "damage": { "type": "number" },
+          "range": { "type": "number" },
+          "fireRate": { "type": "number" },
+          "effect": { "type": "string" },
+          "splash": { "type": "number" },
+          "chain": { "type": "number" }
+        }
+      }
+    }
+  }
+}
