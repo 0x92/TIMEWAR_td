@@ -50,14 +50,25 @@ h1 {
   height: 4px;
   background: #555;
   margin-top: 4px;
+  overflow: hidden;
+}
+
+.timeline .progress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0%;
+  background: #0f0;
+  transition: width 0.1s linear;
 }
 
 .timeline .marker {
   position: absolute;
   top: 0;
   width: 2px;
-  height: 4px;
-  background: #fff;
+  height: 100%;
+  background: #ff0;
 }
 
 .logo {
