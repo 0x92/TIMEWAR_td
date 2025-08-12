@@ -29,6 +29,12 @@ export class ResourceManager {
     return true
   }
 
+  /** Directly set a resource value and notify listeners. */
+  set(type: Resource, value: number): void {
+    this.values[type] = value
+    this.emit(type)
+  }
+
   on(type: Resource, cb: (value: number) => void): void {
     this.listeners[type].push(cb)
   }

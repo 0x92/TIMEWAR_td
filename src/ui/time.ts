@@ -5,9 +5,11 @@ export function bindRewindButton<T>(
   button: HTMLElement,
   controller: RewindController<T>,
   seconds: number,
+  apply: (state: T) => void,
 ): void {
   button.addEventListener('click', () => {
-    controller.tryRewind(seconds)
+    const snap = controller.tryRewind(seconds)
+    if (snap) apply(snap)
   })
 }
 
