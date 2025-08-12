@@ -59,4 +59,8 @@ export class BuildUI {
     this.placements.push({ x, y, def: this.selected })
     return true
   }
+
+  getPlacements(): { x: number; y: number; range: number }[] {
+    return this.placements.map(p => ({ x: p.x, y: p.y, range: p.def.range }))
+  }
 }
