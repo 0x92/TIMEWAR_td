@@ -15,6 +15,10 @@ import { OverlayWheel } from '@ui/overlayWheel'
 import { bindRewindButton } from '@ui/time'
 import { MetaProgression, factions, type FactionId } from '@meta/index'
 
+if (import.meta.env.DEV) {
+  import('@maps/editor')
+}
+
 const meta = new MetaProgression(window.localStorage)
 const state = meta.getState()
 const menu = document.getElementById('menu')!
