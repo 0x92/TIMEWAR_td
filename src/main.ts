@@ -15,6 +15,7 @@ import { OverlayWheel } from '@ui/overlayWheel'
 import { BuildUI } from '@ui/build'
 import { bindRewindButton } from '@ui/time'
 import { MetaProgression, factions, type FactionId } from '@meta/index'
+import { FixedStepLoop } from '@engine/loop'
 
 if (import.meta.env.DEV) {
   import('@maps/editor')
@@ -94,13 +95,62 @@ function startRun(factionId: FactionId): void {
     mouse.x = e.clientX - rect.left
     mouse.y = e.clientY - rect.top
   })
+
+  interface Tower {
+    x: number
+    y: number
+    range: number
+    cd: number
+  }
+  const towers: Tower[] = []
+  const enemies: Array<{ x: number; y: number; hp: number; speed: number }> = []
+  let spawnIndex = 0
+  let simTime = 0
+
   canvas.addEventListener('click', e => {
     const rect = canvas.getBoundingClientRect()
     const x = e.clientX - rect.left
     const y = e.clientY - rect.top
-    build.place(x, y)
+    if (build.place(x, y)) {
+      const p = build.getPlacements().slice(-1)[0]
+      towers.push({ x: p.x, y: p.y, range: p.range, cd: 0 })
+    }
   })
-  function draw(): void {
+
+  const loop = new FixedStepLoop(dt => {
+    simTime += dt
+    while (spawnIndex < plan.length && plan[spawnIndex].time <= simTime) {
+      enemies.push({ x: 0, y: canvas.height / 2, hp: 20, speed: 40 })
+      spawnIndex++
+    }
+    for (const e of enemies) e.x += e.speed * dt
+    for (const t of towers) {
+      t.cd -= dt
+      if (t.cd <= 0) {
+        const target = enemies.find(
+          en => Math.hypot(en.x - t.x, en.y - t.y) <= t.range,
+        )
+        if (target) {
+          target.hp -= 10
+          t.cd = 1
+        }
+      }
+    }
+    for (let i = enemies.length - 1; i >= 0; i--) {
+      const en = enemies[i]
+      if (en.hp <= 0) {
+        enemies.splice(i, 1)
+        resources.add('gold', 5)
+        continue
+      }
+      if (en.x > canvas.width) {
+        enemies.splice(i, 1)
+        resources.spend('stability', 1)
+      }
+    }
+  })
+
+  function render(): void {
     ctx.clearRect(0, 0, canvas.width, canvas.height)
     ctx.strokeStyle = '#444'
     for (let x = 0; x < canvas.width; x += 40) {
@@ -116,9 +166,15 @@ function startRun(factionId: FactionId): void {
       ctx.stroke()
     }
     ctx.fillStyle = '#0f0'
-    for (const p of build.getPlacements()) {
+    for (const t of towers) {
       ctx.beginPath()
-      ctx.arc(p.x, p.y, 8, 0, Math.PI * 2)
+      ctx.arc(t.x, t.y, 8, 0, Math.PI * 2)
+      ctx.fill()
+    }
+    ctx.fillStyle = '#f00'
+    for (const e of enemies) {
+      ctx.beginPath()
+      ctx.arc(e.x, e.y, 10, 0, Math.PI * 2)
       ctx.fill()
     }
     const ghost = build.getGhost(mouse.x, mouse.y)
@@ -128,9 +184,17 @@ function startRun(factionId: FactionId): void {
       ctx.arc(ghost.x, ghost.y, ghost.range, 0, Math.PI * 2)
       ctx.stroke()
     }
-    requestAnimationFrame(draw)
   }
-  draw()
+
+  let last = performance.now()
+  function frame(time: number): void {
+    const dt = (time - last) / 1000
+    last = time
+    loop.advance(dt)
+    render()
+    requestAnimationFrame(frame)
+  }
+  requestAnimationFrame(frame)
 
   const buffer = new SnapshotBuffer<number>(0.1, 6)
   const cost = faction.modifiers?.rewindCostMultiplier ?? 1
