@@ -103,9 +103,57 @@ function startRun(factionId: FactionId): void {
     cd: number
   }
   const towers: Tower[] = []
-  const enemies: Array<{ x: number; y: number; hp: number; speed: number }> = []
+  interface Enemy {
+    x: number
+    y: number
+    hp: number
+    speed: number
+    waypoint: number
+  }
+  const enemies: Enemy[] = []
+  // Simple static path with a single turn to demonstrate pathfinding.
+  const path = [
+    { x: 0, y: canvas.height / 2 },
+    { x: canvas.width / 2, y: canvas.height / 2 },
+    { x: canvas.width / 2, y: canvas.height - 50 },
+    { x: canvas.width, y: canvas.height - 50 },
+  ]
   let spawnIndex = 0
   let simTime = 0
+
+  interface GameState {
+    towers: Tower[]
+    enemies: Enemy[]
+    resources: { gold: number; chrono: number; stability: number }
+    spawnIndex: number
+    simTime: number
+  }
+
+  function getState(): GameState {
+    return {
+      towers: structuredClone(towers),
+      enemies: structuredClone(enemies),
+      resources: {
+        gold: resources.get('gold'),
+        chrono: resources.get('chrono'),
+        stability: resources.get('stability'),
+      },
+      spawnIndex,
+      simTime,
+    }
+  }
+
+  function applyState(s: GameState): void {
+    towers.length = 0
+    towers.push(...s.towers)
+    enemies.length = 0
+    enemies.push(...s.enemies)
+    resources.set('gold', s.resources.gold)
+    resources.set('chrono', s.resources.chrono)
+    resources.set('stability', s.resources.stability)
+    spawnIndex = s.spawnIndex
+    simTime = s.simTime
+  }
 
   canvas.addEventListener('click', e => {
     const rect = canvas.getBoundingClientRect()
@@ -120,10 +168,25 @@ function startRun(factionId: FactionId): void {
   const loop = new FixedStepLoop(dt => {
     simTime += dt
     while (spawnIndex < plan.length && plan[spawnIndex].time <= simTime) {
-      enemies.push({ x: 0, y: canvas.height / 2, hp: 20, speed: 40 })
+      enemies.push({ x: path[0].x, y: path[0].y, hp: 20, speed: 40, waypoint: 1 })
       spawnIndex++
     }
-    for (const e of enemies) e.x += e.speed * dt
+    for (const e of enemies) {
+      const target = path[e.waypoint]
+      if (!target) continue
+      const dx = target.x - e.x
+      const dy = target.y - e.y
+      const dist = Math.hypot(dx, dy)
+      const step = e.speed * dt
+      if (dist <= step) {
+        e.x = target.x
+        e.y = target.y
+        e.waypoint++
+      } else {
+        e.x += (dx / dist) * step
+        e.y += (dy / dist) * step
+      }
+    }
     for (const t of towers) {
       t.cd -= dt
       if (t.cd <= 0) {
@@ -143,7 +206,7 @@ function startRun(factionId: FactionId): void {
         resources.add('gold', 5)
         continue
       }
-      if (en.x > canvas.width) {
+      if (en.waypoint >= path.length) {
         enemies.splice(i, 1)
         resources.spend('stability', 1)
       }
@@ -196,11 +259,11 @@ function startRun(factionId: FactionId): void {
   }
   requestAnimationFrame(frame)
 
-  const buffer = new SnapshotBuffer<number>(0.1, 6)
+  const buffer = new SnapshotBuffer<GameState>(0.1, 6)
   const cost = faction.modifiers?.rewindCostMultiplier ?? 1
   const rewind = new RewindController(buffer, resources, cost)
-  bindRewindButton(document.getElementById('rewind-btn')!, rewind, 1)
-  setInterval(() => buffer.capture(Date.now()), 100)
+  bindRewindButton(document.getElementById('rewind-btn')!, rewind, 1, applyState)
+  setInterval(() => rewind.capture(getState()), 100)
 
   setInterval(() => {
     paradox.add(5)

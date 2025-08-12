@@ -24,6 +24,9 @@ export class BuildUI {
       const existing = controls.get(action)
       if (!existing) controls.bind(action, def.key)
     }
+    // Default to the first available tower so players can build without
+    // needing to press a hotkey beforehand.
+    this.selected = defs[0] ?? null
   }
 
   handleKey(key: string): void {
